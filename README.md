@@ -1,35 +1,19 @@
 # Project Guidelines
 
-
-Develop a business application, such as:
-* Restaurant management system
-* Online shop
-* Core banking system
-* A specific component of an Enterprise Resource Planning (ERP) system (i.e. sales, HR,
-financial planning, inventory etc.)
-* Library system
-* Franchise management system
-* Or any other business application of your choice
-
-
 **Requirements:**  
-Your application should implement at least two end-to-end scenarios:
+*Your application should implement at least two end-to-end scenarios:*
 * A customer requests to open a new saving account -> account is opened
 * A sales request is received by the sales system -> the request is fulfilled
 * A customer requests membership at the local library -> membership is granted
 * Or any other end-to-end scenario related to your business application
 * A request for a new branch of your franchise -> granting the license
 
-*Your application should use all four of the data types we covered:*
+*Your application should use all four of the data types we covered (Your application should take advantage of these datatypes considering their strengths and weaknesses for storing specific datasets):*
 * Arrays
 * ArrayLists
 * HashMap
 * HashSets
-
-
-*Your application should take advantage of these datatypes considering their strengths and
-weaknesses for storing specific datasets.*  
-Your application should:
+*Your application should:*
 * Implement the four principles of object-oriented programming
   1. Inheritance
   2. Polymorphism
@@ -56,7 +40,7 @@ restaurants in different regions, employees in different roles, suppliers of dif
 groups and etc implementing them.
 Your application should take advantage of these facilities and use them in a logical and rational
 way to enhance the reusability and configurability of your code while decreasing its complexity.
-Deliverables:
+# Deliverables
 You need to submit your code, but your score will be based on a presentation including the
 below items:
 1. (10 points – 1 minutes) Two flowcharts for the two end-to-end scenarios:
