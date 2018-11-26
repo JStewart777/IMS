@@ -1,4 +1,4 @@
-# IMS
+# Project Guidelines
 
 
 Develop a business application, such as:
@@ -28,7 +28,7 @@ Your application should implement at least two end-to-end scenarios:
 
 
 *Your application should take advantage of these datatypes considering their strengths and
-weaknesses for storing specific datasets.*
+weaknesses for storing specific datasets.*  
 Your application should:
 * Implement the four principles of object-oriented programming
   1. Inheritance
