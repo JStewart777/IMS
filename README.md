@@ -12,7 +12,7 @@
 * Arrays
 * ArrayLists
 * HashMap
-* HashSets
+* HashSets  
 *Your application should:*
 * Implement the four principles of object-oriented programming
   1. Inheritance
