@@ -12,40 +12,40 @@ financial planning, inventory etc.)
 * Or any other business application of your choice
 Requirements:
 Your application should implement at least two end-to-end scenarios:
-• A customer requests to open a new saving account -> account is opened
-• A sales request is received by the sales system -> the request is fulfilled
-• A customer requests membership at the local library -> membership is granted
-• Or any other end-to-end scenario related to your business application
-• A request for a new branch of your franchise -> granting the license
+* A customer requests to open a new saving account -> account is opened
+* A sales request is received by the sales system -> the request is fulfilled
+* A customer requests membership at the local library -> membership is granted
+* Or any other end-to-end scenario related to your business application
+* A request for a new branch of your franchise -> granting the license
 Your application should use all four of the data types we covered:
-• Arrays
-• ArrayLists
-• HashMap
-• HashSets
+* Arrays
+* ArrayLists
+* HashMap
+* HashSets
 Your application should take advantage of these datatypes considering their strengths and
 weaknesses for storing specific datasets.
 Your application should:
-• Implement the four principles of object-oriented programming
-o Inheritance
-o Polymorphism
-o Encapsulation
-o Abstraction
+* Implement the four principles of object-oriented programming
+  1. Inheritance
+  2. Polymorphism
+  3. Encapsulation
+  4. Abstraction
 • Follow an object-oriented programing architecture, using java facilities to implement
 the above principles. Facilities such as:
-o Classes with accessors and mutators and private and public attributes and
+  1. Classes with accessors and mutators and private and public attributes and
 methods
-o Abstract classes and methods
-o Super classes and sub classes
-o Method overloading and overriding
-o Interfaces
-o Static data and methods
+  2. Abstract classes and methods
+  3. Super classes and sub classes
+  4. Method overloading and overriding
+  5. Interfaces
+  6. Static data and methods
 You need to think about different entities in your business problem and use the best OOP
 architecture to model them. For example:
-• In a library, you might have abstract (or super) classes such as book and shelf and rooms
+* In a library, you might have abstract (or super) classes such as book and shelf and rooms
 and members and classes such as books of different genre or types, shelfts in different
 sections (display, storage, etc), member groups (based on age, loyalty, etc.),
 implementing them.
-• In a franchise management system, you might have abstract (or super) classes such as
+* In a franchise management system, you might have abstract (or super) classes such as
 restaurants, employee, supplier, and interfaces such as brand and have classes such as
 restaurants in different regions, employees in different roles, suppliers of different good
 groups and etc implementing them.
@@ -55,10 +55,10 @@ Deliverables:
 You need to submit your code, but your score will be based on a presentation including the
 below items:
 1. (10 points – 1 minutes) Two flowcharts for the two end-to-end scenarios:
-1.1. The scenarios need to be realistic, but does not have to be complicated. A typical
+  * The scenarios need to be realistic, but does not have to be complicated. A typical
 business scenario generally goes through 2-3 decision points and uses 2-3 data items
 for making those decisions, and adds or changes 1-2 entities in the system.
-1.2. For example, a request for an item from the inventory goes through inventory
+  * For example, a request for an item from the inventory goes through inventory
 employee who only checks the availability of the item, the inventory supervisor that
 confirms the request, and the inventory employee who delivers the item and makes
 changes to the availability of the item and to the storage space in the inventory.
