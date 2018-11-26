@@ -1,5 +1,5 @@
 # IMS
-Inventory Management System
+
 
 Develop a business application, such as:
 * Restaurant management system
@@ -12,7 +12,7 @@ financial planning, inventory etc.)
 * Or any other business application of your choice
 
 
-**Requirements:**
+**Requirements:**  
 Your application should implement at least two end-to-end scenarios:
 * A customer requests to open a new saving account -> account is opened
 * A sales request is received by the sales system -> the request is fulfilled
