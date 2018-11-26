@@ -2,14 +2,14 @@
 Inventory Management System
 
 Develop a business application, such as:
-• Restaurant management system
-• Online shop
-• Core banking system
-• A specific component of an Enterprise Resource Planning (ERP) system (i.e. sales, HR,
+* Restaurant management system
+* Online shop
+* Core banking system
+* A specific component of an Enterprise Resource Planning (ERP) system (i.e. sales, HR,
 financial planning, inventory etc.)
-• Library system
-• Franchise management system
-• Or any other business application of your choice
+* Library system
+* Franchise management system
+* Or any other business application of your choice
 Requirements:
 Your application should implement at least two end-to-end scenarios:
 • A customer requests to open a new saving account -> account is opened
