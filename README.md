@@ -10,20 +10,25 @@ financial planning, inventory etc.)
 * Library system
 * Franchise management system
 * Or any other business application of your choice
-Requirements:
+
+
+**Requirements:**
 Your application should implement at least two end-to-end scenarios:
 * A customer requests to open a new saving account -> account is opened
 * A sales request is received by the sales system -> the request is fulfilled
 * A customer requests membership at the local library -> membership is granted
 * Or any other end-to-end scenario related to your business application
 * A request for a new branch of your franchise -> granting the license
-Your application should use all four of the data types we covered:
+
+*Your application should use all four of the data types we covered:*
 * Arrays
 * ArrayLists
 * HashMap
 * HashSets
-Your application should take advantage of these datatypes considering their strengths and
-weaknesses for storing specific datasets.
+
+
+*Your application should take advantage of these datatypes considering their strengths and
+weaknesses for storing specific datasets.*
 Your application should:
 * Implement the four principles of object-oriented programming
   1. Inheritance
