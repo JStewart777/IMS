@@ -30,7 +30,7 @@ Your application should:
   2. Polymorphism
   3. Encapsulation
   4. Abstraction
-• Follow an object-oriented programing architecture, using java facilities to implement
+* Follow an object-oriented programing architecture, using java facilities to implement
 the above principles. Facilities such as:
   1. Classes with accessors and mutators and private and public attributes and
 methods
