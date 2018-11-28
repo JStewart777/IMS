@@ -1,13 +1,24 @@
+
 import java.util.*;
 public class GroceryStore {
-	//TODO: make a collection to hold this data
+	public HashSet<Item> StoreCatalog = new HashSet<Item>();
 	
-	HashMap<Item,Integer> Store = new HashMap<Item,Integer>();
-	
-	public void putOnSale() {
-		//TODO: select either meat or produce, 
-		//and input % to discount the item with less than x days till expiration
+	public void addProduce(String description, double price, boolean byPound) {
+		Produce p = new Produce(description, price, byPound); 
+		StoreCatalog.add(p);
 	}
+	
+	public void addMeat(String description, double price, boolean byPound, String animal) {
+		Meat m = new Meat(description, price, byPound, animal);
+		StoreCatalog.add(m);
+	}
+	
+	public void printCatalogItems() {
+		for (Item i : StoreCatalog) {
+			i.printDesc();
+		}
+	}
+
 	
 	
 }
