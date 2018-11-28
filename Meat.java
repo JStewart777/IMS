@@ -7,10 +7,10 @@ public class Meat extends Item{
 	
 	public Meat() {
 		itemId = itemCount;
-		itemDescription = "Sirloin";
-		itemPrice = 8.99;
+		itemDescription = "NA";
+		itemPrice = 0.00;
 		pricePer = PricingCategory.POUND;
-		animal = "cow";
+		animal = "NA";
 		itemCount++;
 	}
 	
