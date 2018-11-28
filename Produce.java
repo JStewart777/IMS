@@ -1,5 +1,3 @@
-package InventorySys;
-
 
 public class Produce extends Item {
 	
@@ -35,9 +33,7 @@ public class Produce extends Item {
 	
 	@Override
 	public void printItem() {
-		System.out.println("Item ID: " + itemId + ", " + itemDescription);
-		System.out.println("Vendor Name: " + vendorName);
-		System.out.println("Price: " + itemPrice + " per " + pricePer);
+		super.printItem();
 		System.out.println(daysToExpiry + " days until expiration.");
 		System.out.println("Region: " + region + "Harvest Season: " + harvestSeason);
 		
