@@ -1,9 +1,20 @@
 package InventorySys;
-import java.util.*;
+
+import java.util.HashMap;
+import java.util.Scanner;
 
 public class GroceryCart {
-	//TODO: make some collection to hold this information 
-	//(probably hashset, to hold ITEM and quantity)
-	// testing testing
 
+	HashMap<Item,Integer> Store = new HashMap<Item,Integer>();
+	Scanner sc = new Scanner(System.in);
+	
+	
+		
+		
+		
+	
+	
+	public void printCatalog() {
+	
+	}
 }
