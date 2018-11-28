@@ -9,7 +9,9 @@ public abstract class Item {
 	PricingCategory pricePer;
 	protected static int itemCount = 1;
 	
-	
+	public PricingCategory getPricingCategory() {
+		return pricePer;
+	}
 	
 	public int getItemId() {
 		return itemId;
@@ -34,8 +36,8 @@ public abstract class Item {
 //	public abstract void printItem();
 	
 	public void printItem()   {
-		System.out.println("Item ID: " + itemId + ", " + itemDescription);
-		System.out.println("Price: " + itemPrice + " per " + pricePer);
+		System.out.println("Item : " + itemDescription);
+		System.out.println("Price: $" + itemPrice + " per " + pricePer);
 	}
 	
 	public void printDesc() {
