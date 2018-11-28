@@ -1,4 +1,4 @@
-package InventorySys;
+
 
 public abstract class Item {
 
@@ -36,7 +36,13 @@ public abstract class Item {
 		this.vendorName = vendorName;
 	}
 	
-	public abstract void printItem();
+//	public abstract void printItem();
+	
+	public void printItem()   {
+		System.out.println("Item ID: " + itemId + ", " + itemDescription);
+		System.out.println("Vendor Name: " + vendorName);
+		System.out.println("Price: " + itemPrice + " per " + pricePer);
+	}
 	
 	
 	
