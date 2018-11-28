@@ -1,4 +1,4 @@
-
+package InventorySys;
 
 public abstract class Item {
 
@@ -7,8 +7,8 @@ public abstract class Item {
 	double itemPrice;
 	enum PricingCategory {POUND, UNIT};
 	PricingCategory pricePer;
-	String vendorName;
-	protected static int itemCount = 0;
+	protected static int itemCount = 1;
+	
 	
 	
 	public int getItemId() {
@@ -29,19 +29,17 @@ public abstract class Item {
 	public void setItemPrice(double itemPrice) {
 		this.itemPrice = itemPrice;
 	}
-	public String getVendorName() {
-		return vendorName;
-	}
-	public void setVendorName(String vendorName) {
-		this.vendorName = vendorName;
-	}
+
 	
 //	public abstract void printItem();
 	
 	public void printItem()   {
 		System.out.println("Item ID: " + itemId + ", " + itemDescription);
-		System.out.println("Vendor Name: " + vendorName);
 		System.out.println("Price: " + itemPrice + " per " + pricePer);
+	}
+	
+	public void printDesc() {
+		System.out.print(itemDescription);
 	}
 	
 	
