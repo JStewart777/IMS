@@ -22,7 +22,8 @@ public class GroceryStore {
 			else if (menuOption == '2') {
 				System.out.println("~REMOVE A MEMBER~");
 				System.out.println("What is the ID of membership to be cancelled?");
-				int id = sc.nextInt();
+				String idString = sc.nextLine();
+				int id = Integer.parseInt(idString);
 				myStore.removeMember(id);
 			}
 			else {
@@ -89,7 +90,8 @@ public class GroceryStore {
 	public Item chooseItem(GroceryStore store, Scanner sc) { 
 		while (true) {
 			store.printCatalogItems();
-			sc.nextLine();
+			//sc.nextLine(); 
+			//may no longer need this dummy because we arent using nextInt().
 			String userInput = sc.nextLine();
 			for (Item i : StoreCatalog) {
 				if (i.getItemDescription().equalsIgnoreCase(userInput)) {
@@ -102,50 +104,70 @@ public class GroceryStore {
 	
 	public void addItemToCart (Item i, Scanner sc, GroceryStore myStore) {
 		i.printItem();
-		if (i.getPricingCategory() == PricingCategory.POUND) {
-			System.out.println("How many pounds of " + i.getItemDescription() + "?");
-		}
-		else {
-			System.out.println("How many units of " + i.getItemDescription() + "?");
-		}
-		Integer quantity = sc.nextInt();
+			if (i.getPricingCategory() == PricingCategory.POUND) {
+				System.out.println("How many pounds of " + i.getItemDescription() + "?");
+			}
+			else {
+				System.out.println("How many units of " + i.getItemDescription() + "?");
+			}
+		String quantityString = sc.nextLine();
+		Integer quantity = Integer.parseInt(quantityString);
 		Cart.put(i, quantity);
 		//myStore.addCartItem(i, quantity); DEPRECATED
 	}
 
 	public void goShopping(GroceryStore myStore, Scanner sc) {
-		int counter = 0;
 		while (true) {
-			if (counter > 0) {
-				System.out.println("Add another item? Yes/No");
-				String menu = sc.nextLine();
-				if (menu.equalsIgnoreCase("NO"))
-					break;
-				else if (menu.equalsIgnoreCase("YES"))
-					myStore.addItemToCart(myStore.chooseItem(myStore, sc), sc, myStore);
-				else 
-					System.out.println("Invalid Entry.");
-			}
-			counter++;
 			System.out.println("Please select an item by typing its name to view item details.");
 			myStore.addItemToCart(myStore.chooseItem(myStore, sc), sc, myStore);
-			
-			
+			System.out.println("Add another item? (Yes/No)");
+			String menu = sc.nextLine();
+			if (menu.equalsIgnoreCase("NO"))
+				break;
+			else if (menu.equalsIgnoreCase("YES")) {
+				continue;
+			}
 		}
-			myStore.printCartReceipt();
+	myStore.printCartReceipt();
 	}
+	
+		
+//		int counter = 0;
+//		while (true) {
+//			if (counter > 0) {
+//					while (true) {
+//						System.out.println("Add another item? Yes/No");
+//						String menu = sc.nextLine();
+//						if (menu.equalsIgnoreCase("NO"))
+//							break;
+//						else if (menu.equalsIgnoreCase("YES")) {
+//							myStore.addItemToCart(myStore.chooseItem(myStore, sc), sc, myStore);
+//							break;
+//						}
+//					else 
+//						System.out.println("Invalid Entry.");
+//					}
+//			counter++;
+//			System.out.println("Please select an item by typing its name to view item details.");
+//			myStore.addItemToCart(myStore.chooseItem(myStore, sc), sc, myStore);
+//			
+//			
+//			}
+//			myStore.printCartReceipt();
+	
 	
 	public void printCartReceipt() {
 		double totalPrice = 0;
 		for (Item i : Cart.keySet()) { 
 			i.printDesc();
-			System.out.println(" : " + Cart.get(i));
+			System.out.println(" x" + Cart.get(i) + " @ $" + i.getItemPrice());
 			double linePrice = i.getItemPrice() * Cart.get(i);
-			System.out.println("Line Price: $" + linePrice);
+			System.out.println("= $" + linePrice);
 			totalPrice = totalPrice + linePrice;
 		}
 		//TODO: If member, decrease price by x%
-		System.out.println("Total Price: $" + totalPrice);
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~");
+		System.out.println("Total: $" + totalPrice);
 	}
 
 
@@ -158,6 +180,3 @@ public class GroceryStore {
 
 	
 }
-
-
-
