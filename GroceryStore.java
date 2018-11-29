@@ -1,30 +1,39 @@
+package InventorySys;
 
 import java.util.*;
 
 import InventorySys.Item.PricingCategory;
 public class GroceryStore {
-	//TODO: make a collection to hold this data
-	
-
-	HashMap<Item,Integer> Store = new HashMap<Item,Integer>();
+	HashSet<Item> StoreCatalog = new HashSet<Item>();
+	HashMap<Item,Integer> Cart = new HashMap<Item,Integer>();	
 	ArrayList<Membership> MemList = new ArrayList<Membership>();
 	
-
-	GroceryCart myCart = new GroceryCart();
-	HashMap<Item,Integer> Cart = new HashMap<Item,Integer>();	
-	
-	public void addCartItem(Item item, Integer quantity) { 
-		Cart.put(item, quantity);
-	}
+	public void memberManage(Scanner sc, GroceryStore myStore) {
+		while (true) {
+			System.out.println("~MEMBERSHIP MANAGEMENT~");
+			System.out.println("1. Add a member");
+			System.out.println("2. Remove a member");
+			System.out.println("3. Return to main menu");
+			String menuInput = sc.nextLine();
+			char menuOption = menuInput.charAt(0);
+			if (menuOption == '1') {
+				myStore.addMember(sc);
+			}
+			else if (menuOption == '2') {
+				System.out.println("~REMOVE A MEMBER~");
+				System.out.println("What is the ID of membership to be cancelled?");
+				int id = sc.nextInt();
+				myStore.removeMember(id);
+			}
+			else {
+				break;
+			}
+		}
 		
-	
-	public void addProduce(String description, double price, boolean byPound) {
-		Produce p = new Produce(description, price, byPound); 
-		StoreCatalog.add(p);
-
 	}
 	
-	public void addMember(Scanner scnr)   {
+	
+	private void addMember(Scanner scnr)   {
 		System.out.println("Enter name:");
 		String name = scnr.nextLine();
 		scnr.nextLine();
@@ -44,16 +53,31 @@ public class GroceryStore {
 	}
 	
 
-	public void removeMember(int id)   {//THIS MAY OR MAY NOT WORK
+	public void removeMember(int id)   {//THIS MAY OR MAY NOT WORK - confirmed does not work TODO
 		for(Membership i : MemList)   {
 			if(i.getID() == id)   {
 				MemList.remove(i);
 			}
+			else {
+				System.out.println("ID does not exist.");
+			}
 		}
 	}
 	
+	public void addCartItem(Item item, Integer quantity) { 
+		Cart.put(item, quantity);
+	}
+		
+	public void addProduce(String description, double price, boolean byPound) {
+		Produce p = new Produce(description, price, byPound); 
+		StoreCatalog.add(p);
+	}
 	
-
+	public void addMeat(String description, double price, boolean byPound, String animal) {
+		Meat m = new Meat(description, price, byPound, animal);
+		StoreCatalog.add(m);
+	}
+	
 	public void printCatalogItems() {
 		for (Item i : StoreCatalog) {
 			i.printDesc();
@@ -71,7 +95,7 @@ public class GroceryStore {
 					return i;
 				}
 			}
-			System.out.println("Invalid entry. Please try again.");
+			System.out.println("Invalid entry.");
 		}
 	}
 	
@@ -87,17 +111,24 @@ public class GroceryStore {
 		myStore.addCartItem(i, quantity);
 	}
 
-	public void goShopping(GroceryStore myStore, GroceryCart myCart, Scanner sc) {
-		
+	public void goShopping(GroceryStore myStore, Scanner sc) {
+		int counter = 0;
 		while (true) {
-			System.out.println("Add another item? Yes/No");
-			String menu = sc.nextLine();
-			if (menu.equalsIgnoreCase("NO"))
-				break;
-			else if (menu.equalsIgnoreCase("YES"))
-				myStore.addItemToCart(myStore.chooseItem(myStore, sc), sc, myStore);
-			else 
-				System.out.println("Invalid Entry.");
+			if (counter > 0) {
+				System.out.println("Add another item? Yes/No");
+				String menu = sc.nextLine();
+				if (menu.equalsIgnoreCase("NO"))
+					break;
+				else if (menu.equalsIgnoreCase("YES"))
+					myStore.addItemToCart(myStore.chooseItem(myStore, sc), sc, myStore);
+				else 
+					System.out.println("Invalid Entry.");
+			}
+			counter++;
+			System.out.println("Please select an item by typing its name to view item details.");
+			myStore.addItemToCart(myStore.chooseItem(myStore, sc), sc, myStore);
+			
+			
 		}
 			myStore.printCartReceipt();
 	}
@@ -111,11 +142,17 @@ public class GroceryStore {
 			System.out.println("Line Price: $" + linePrice);
 			totalPrice = totalPrice + linePrice;
 		}
-		
 		System.out.println("Total Price: $" + totalPrice);
 	}
 
-	
+
+
+	public void exit() {
+		System.out.println("Thank you for visiting the MIS Farmers Market!");
+		System.exit(0);
+	}
+
+
 	
 }
 
