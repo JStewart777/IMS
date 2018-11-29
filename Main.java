@@ -8,7 +8,7 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 		
 		//filling catalog
-		//TODO: Add a bunch more foods and put in stockShelves(myStore);
+		//TODO: Add a bunch more foods and put in method = myStore.stockShelves(myStore);
 		myStore.addMeat("Filet Mignon", 14.99, true, "Cow");
 		myStore.addMeat("Burgers", 5, false, "Cow");
 		myStore.addProduce("Spinach", 3.00, false);
