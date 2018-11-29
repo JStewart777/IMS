@@ -4,7 +4,7 @@ import java.util.*;
 
 import InventorySys.Item.PricingCategory;
 public class GroceryStore {
-	HashSet<Item> StoreCatalog = new HashSet<Item>();
+	HashSet<Item> StoreCatalog = new HashSet<Item>(); 
 	HashMap<Item,Integer> Cart = new HashMap<Item,Integer>();	
 	ArrayList<Membership> MemList = new ArrayList<Membership>();
 	
@@ -40,7 +40,7 @@ public class GroceryStore {
 		System.out.println("Did they pay the $50 membership fee? Enter 'Yes' or 'No'"); 
 		String answer = scnr.next();
 		while(answer.equalsIgnoreCase("No"))   {
-			System.out.println("You cannot obtain a membership until you have paid the $50 membership fee. Please try again.");
+			System.out.println("Membership cannot be obtained until $50 membership fee is paid. Please try again.");
 			answer = scnr.next();
 		}
 		if(answer.equalsIgnoreCase("Yes"))   {
@@ -53,7 +53,7 @@ public class GroceryStore {
 	}
 	
 
-	public void removeMember(int id)   {//THIS MAY OR MAY NOT WORK - confirmed does not work TODO
+	public void removeMember(int id)   {//TODO: This does not work
 		for(Membership i : MemList)   {
 			if(i.getID() == id)   {
 				MemList.remove(i);
@@ -64,9 +64,10 @@ public class GroceryStore {
 		}
 	}
 	
-	public void addCartItem(Item item, Integer quantity) { 
-		Cart.put(item, quantity);
-	}
+	//Only a one-line helper method - DEPRECATED
+// 	public void addCartItem(Item item, Integer quantity) { 
+// 		Cart.put(item, quantity);
+// 	}
 		
 	public void addProduce(String description, double price, boolean byPound) {
 		Produce p = new Produce(description, price, byPound); 
@@ -108,7 +109,8 @@ public class GroceryStore {
 			System.out.println("How many units of " + i.getItemDescription() + "?");
 		}
 		Integer quantity = sc.nextInt();
-		myStore.addCartItem(i, quantity);
+		Cart.put(i, quantity);
+		//myStore.addCartItem(i, quantity); DEPRECATED
 	}
 
 	public void goShopping(GroceryStore myStore, Scanner sc) {
@@ -142,6 +144,7 @@ public class GroceryStore {
 			System.out.println("Line Price: $" + linePrice);
 			totalPrice = totalPrice + linePrice;
 		}
+		//TODO: If member, decrease price by x%
 		System.out.println("Total Price: $" + totalPrice);
 	}
 
@@ -155,4 +158,6 @@ public class GroceryStore {
 
 	
 }
+
+
 
