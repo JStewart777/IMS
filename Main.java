@@ -23,17 +23,20 @@ public class Main {
 			System.out.println("1. Begin shopping");
 			System.out.println("2. Manage memberships");
 			System.out.println("3. Exit the store.");
-			sc.nextLine();//TODO
+
 			String menuInput = sc.nextLine();
-			char menuOption = menuInput.charAt(0);
-			if (menuOption == '1') {
+			if (menuInput.equals("")) { //fixing white space issue
+				menuInput = sc.nextLine();
+			}
+			int menuOption = Integer.parseInt(menuInput);
+			if (menuOption == 1) {
 				myStore.goShopping(myStore, sc);
 				myStore.exit();
 			}
-			else if (menuOption == '2') {
+			else if (menuOption == 2) {
 				myStore.memberManage(sc, myStore);
 			}
-			else if (menuOption == '3')
+			else if (menuOption == 3)
 				myStore.exit();
 			else 
 				System.out.println("Invalid Entry");
