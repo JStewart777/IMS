@@ -2,102 +2,73 @@ package InventorySys;
 
 import java.util.*;
 
-
 import InventorySys.Item.PricingCategory;
 public class GroceryStore {
-	HashSet<Item> StoreCatalog = new HashSet<Item>(); 
+	HashSet<Item> StoreCatalog = new HashSet<Item>();
 	HashMap<Item,Integer> Cart = new HashMap<Item,Integer>();	
 	ArrayList<Membership> MemList = new ArrayList<Membership>();
-	String[] numAisles = new String[10];
-	
-	
 	
 	public void memberManage(Scanner sc, GroceryStore myStore) {
-	while (true) {
-		System.out.println("~MEMBERSHIP MANAGEMENT~");
-		System.out.println("1. Add a member");
-		System.out.println("2. Remove a member");
-		System.out.println("3. Print Membership List");
-		System.out.println("4. Return to main menu");
-		int menuInput = sc.nextInt();
-//		char menuOption = menuInput.charAt(0);
-		if (menuInput == 1) {
-			myStore.addMember(sc);
+		while (true) {
+			System.out.println("~MEMBERSHIP MANAGEMENT~");
+			System.out.println("1. Add a member");
+			System.out.println("2. Remove a member");
+			System.out.println("3. Return to main menu");
+			String menuInput = sc.nextLine();
+			char menuOption = menuInput.charAt(0);
+			if (menuOption == '1') {
+				myStore.addMember(sc);
+			}
+			else if (menuOption == '2') {
+				System.out.println("~REMOVE A MEMBER~");
+				System.out.println("What is the ID of membership to be cancelled?");
+				int id = sc.nextInt();
+				myStore.removeMember(id);
+			}
+			else {
+				break;
+			}
 		}
-		else if (menuInput == 2) {
-			System.out.println("~REMOVE A MEMBER~");
-			System.out.println("What is the ID of membership to be cancelled?");
-			int id = sc.nextInt();
-//			int id = Integer.parseInt(idString);
-			myStore.removeMember(id);
-//			System.out.println("fsdfsd");
-		}
-		else if(menuInput == 3)   {
-			myStore.printMembers();
-		}
-		else {
-			break;
-		}
+		
 	}
 	
-}
-
-
+	
 	private void addMember(Scanner scnr)   {
 		System.out.println("Enter name:");
-		String name = scnr.next();
+		String name = scnr.nextLine();
 		scnr.nextLine();
 		System.out.println("Did they pay the $50 membership fee? Enter 'Yes' or 'No'"); 
 		String answer = scnr.next();
 		while(answer.equalsIgnoreCase("No"))   {
-			System.out.println("Membership cannot be obtained until $50 membership fee is paid. Please try again.");
+			System.out.println("You cannot obtain a membership until you have paid the $50 membership fee. Please try again.");
 			answer = scnr.next();
 		}
 		if(answer.equalsIgnoreCase("Yes"))   {
 			Membership m1 = new Membership(name);
 			MemList.add(m1);
-			
 		}
 		else  {
 			System.out.println("Please enter either 'Yes' or 'No'");
-			answer = scnr.next();
-			
+		}
 	}
-}
+	
 
-
-	public void removeMember(int id)   {//TODO: This does not work
-		int counter = 0;
+	public void removeMember(int id)   {//THIS MAY OR MAY NOT WORK - confirmed does not work TODO
 		Membership memberToRemove = null;
 		for(Membership i : MemList)   {
-			if(i.getID() == id) {
-//				MemList.remove(i);
+			if(i.getID() == id)   {
 				memberToRemove = i;
-				System.out.println("-----------------");
-				System.out.println("Member Removed.");
-				counter++;
 			}
-//			else {
-//				System.out.println("ID does not exist.");
-//			}
-		}
-		if (counter == 0)   {
-			System.out.println("ID does not exist.");
+			else {
+				System.out.println("ID does not exist.");
+			}
 		}
 		MemList.remove(memberToRemove);
 	}
-
-	public void printMembers()   {
-		for(Membership j : MemList)   {
-			j.print();
-		}
-	}
-
 	
-	//Only a one-line helper method - DEPRECATED
-// 	public void addCartItem(Item item, Integer quantity) { 
-// 		Cart.put(item, quantity);
-// 	}
+	public void addCartItem(Item item, Integer quantity) { 
+		Cart.put(item, quantity);
+	}
 		
 	public void addProduce(String description, double price, boolean byPound) {
 		Produce p = new Produce(description, price, byPound); 
@@ -119,8 +90,7 @@ public class GroceryStore {
 	public Item chooseItem(GroceryStore store, Scanner sc) { 
 		while (true) {
 			store.printCatalogItems();
-			//sc.nextLine(); 
-			//may no longer need this dummy because we arent using nextInt().
+			sc.nextLine();
 			String userInput = sc.nextLine();
 			for (Item i : StoreCatalog) {
 				if (i.getItemDescription().equalsIgnoreCase(userInput)) {
@@ -133,50 +103,73 @@ public class GroceryStore {
 	
 	public void addItemToCart (Item i, Scanner sc, GroceryStore myStore) {
 		i.printItem();
-			if (i.getPricingCategory() == PricingCategory.POUND) {
-				System.out.println("How many pounds of " + i.getItemDescription() + "?");
-			}
-			else {
-				System.out.println("How many units of " + i.getItemDescription() + "?");
-			}
-		String quantityString = sc.nextLine();
-		Integer quantity = Integer.parseInt(quantityString);
-		Cart.put(i, quantity);
-		//myStore.addCartItem(i, quantity); DEPRECATED
+		if (i.getPricingCategory() == PricingCategory.POUND) {
+			System.out.println("How many pounds of " + i.getItemDescription() + "?");
+		}
+		else {
+			System.out.println("How many units of " + i.getItemDescription() + "?");
+		}
+		Integer quantity = sc.nextInt();
+		myStore.addCartItem(i, quantity);
 	}
 
-	public void goShopping(GroceryStore myStore, Scanner sc) {
+	public void goShopping(GroceryStore myStore, Scanner sc) { //TODO: currently not working properly
+		int counter = 0;
 		while (true) {
+			if (counter > 0) {
+				System.out.println("Add another item? Yes/No");
+				sc.nextLine();
+				String menu = sc.nextLine();
+				if (menu.equalsIgnoreCase("NO"))
+					break;
+				else if (menu.equalsIgnoreCase("YES"))
+					myStore.addItemToCart(myStore.chooseItem(myStore, sc), sc, myStore);
+				else 
+					System.out.println("Invalid Entry.");
+			}
+			counter++;
 			System.out.println("Please select an item by typing its name to view item details.");
 			myStore.addItemToCart(myStore.chooseItem(myStore, sc), sc, myStore);
-			System.out.println("Add another item? (Yes/No)");
-			String menu = sc.nextLine();
-			if (menu.equalsIgnoreCase("NO"))
-				break;
-			else if (menu.equalsIgnoreCase("YES")) {
-				continue;
-			}
+			
+			
 		}
-	myStore.printCartReceipt();
+			myStore.printCartReceipt(sc);
 	}
 	
 	
-	
-	public void printCartReceipt() {
+	public void printCartReceipt(Scanner sc) {
 		double totalPrice = 0;
 		for (Item i : Cart.keySet()) { 
 			i.printDesc();
-			System.out.println(" x" + Cart.get(i) + " @ $" + i.getItemPrice());
+			System.out.println(" : " + Cart.get(i));
 			double linePrice = i.getItemPrice() * Cart.get(i);
-			System.out.println("= $" + linePrice);
+			System.out.println("Line Price: $" + linePrice);
 			totalPrice = totalPrice + linePrice;
 		}
-		//TODO: If member, decrease price by x%
-		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~");
-		System.out.println("Total: $" + totalPrice);
+		//member discount
+		double discount = 1.00;
+		System.out.println("Are you a member? (Yes/No)");
+		String input = sc.nextLine();
+		if (input.equalsIgnoreCase("YES")) {
+			System.out.println("What is your ID?");
+			String input2 = sc.nextLine();
+			int id = Integer.parseInt(input2);
+			boolean idExists = false;
+				for(Membership i : MemList)   {
+					if(i.getID() == id)   {
+						idExists = true;
+					}
+				}
+				if (idExists) {
+					discount = .90;
+				}
+				else {
+					System.out.println("No valid ID");
+				}
+		}
+		System.out.println("Total Price: $" + discount*totalPrice);
 	}
-
-
+	
 
 	public void exit() {
 		System.out.println("Thank you for visiting the MIS Farmers Market!");
@@ -186,3 +179,4 @@ public class GroceryStore {
 
 	
 }
+
