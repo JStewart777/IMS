@@ -157,24 +157,44 @@ public class GroceryStore {
 				continue;
 			}
 		}
-	myStore.printCartReceipt();
+	myStore.printCartReceipt(sc);
 	}
 	
 	
 	
-	public void printCartReceipt() {
+	public void printCartReceipt(Scanner sc) {
 		double totalPrice = 0;
 		for (Item i : Cart.keySet()) { 
 			i.printDesc();
-			System.out.println(" x" + Cart.get(i) + " @ $" + i.getItemPrice());
+			System.out.println(" : " + Cart.get(i));
 			double linePrice = i.getItemPrice() * Cart.get(i);
-			System.out.println("= $" + linePrice);
+			System.out.println("Line Price: $" + linePrice);
 			totalPrice = totalPrice + linePrice;
 		}
-		//TODO: If member, decrease price by x%
-		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~");
-		System.out.println("Total: $" + totalPrice);
+		//member discount
+		double discount = 1.00;
+		System.out.println("Are you a member? (Yes/No)");
+		String input = sc.nextLine();
+		if (input.equalsIgnoreCase("YES")) {
+			System.out.println("What is your ID?");
+			String input2 = sc.nextLine();
+			int id = Integer.parseInt(input2);
+			boolean idExists = false;
+				for(Membership i : MemList)   {
+					if(i.getID() == id)   {
+						idExists = true;
+					}
+				}
+				if (idExists) {
+					discount = .90;
+				}
+				else {
+					System.out.println("No valid ID");
+				}
+		}
+		System.out.println("Total Price: $" + discount*totalPrice);
 	}
+	
 
 
 
