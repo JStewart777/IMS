@@ -30,9 +30,6 @@ public abstract class Item {
 	public void setItemPrice(double itemPrice) {
 		this.itemPrice = itemPrice;
 	}
-
-	
-//	public abstract void printItem();
 	
 	public void printItem()   {
 		System.out.println("Item : " + itemDescription);
@@ -42,9 +39,5 @@ public abstract class Item {
 	public void printDesc() {
 		System.out.print(itemDescription);
 	}
-	
-	
-	
-	
 	
 }

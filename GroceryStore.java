@@ -2,13 +2,12 @@ package InventorySys;
 
 import java.util.*;
 
-
 import InventorySys.Item.PricingCategory;
 public class GroceryStore {
 	HashSet<Item> StoreCatalog = new HashSet<Item>(); 
 	HashMap<Item,Integer> Cart = new HashMap<Item,Integer>();	
 	ArrayList<Membership> MemList = new ArrayList<Membership>();
-	String[] numAisles = new String[10];
+
 	
 	
 	
@@ -18,9 +17,9 @@ public class GroceryStore {
 		System.out.println("1. Add a member");
 		System.out.println("2. Remove a member");
 		System.out.println("3. Print Membership List");
-		System.out.println("4. Return to main menu");
+		System.out.println("4. Generate Coupon List");
+		System.out.println("5. Return to main menu");
 		int menuInput = sc.nextInt();
-//		char menuOption = menuInput.charAt(0);
 		if (menuInput == 1) {
 			myStore.addMember(sc);
 		}
@@ -28,12 +27,19 @@ public class GroceryStore {
 			System.out.println("~REMOVE A MEMBER~");
 			System.out.println("What is the ID of membership to be cancelled?");
 			int id = sc.nextInt();
-//			int id = Integer.parseInt(idString);
 			myStore.removeMember(id);
-//			System.out.println("fsdfsd");
 		}
 		else if(menuInput == 3)   {
 			myStore.printMembers();
+		}
+		else if (menuInput ==4)   {
+			if (MemList.size()==0)   {
+				System.out.println("No members exist.");
+				continue;
+			}
+			else   {
+				myStore.generateCoupons();
+			}
 		}
 		else {
 			break;
@@ -41,7 +47,6 @@ public class GroceryStore {
 	}
 	
 }
-
 
 	private void addMember(Scanner scnr)   {
 		System.out.println("Enter name:");
@@ -65,21 +70,17 @@ public class GroceryStore {
 	}
 }
 
-
-	public void removeMember(int id)   {//TODO: This does not work
+	public void removeMember(int id)   {
 		int counter = 0;
 		Membership memberToRemove = null;
 		for(Membership i : MemList)   {
 			if(i.getID() == id) {
-//				MemList.remove(i);
 				memberToRemove = i;
 				System.out.println("-----------------");
 				System.out.println("Member Removed.");
 				counter++;
 			}
-//			else {
-//				System.out.println("ID does not exist.");
-//			}
+
 		}
 		if (counter == 0)   {
 			System.out.println("ID does not exist.");
@@ -92,12 +93,15 @@ public class GroceryStore {
 			j.print();
 		}
 	}
-
 	
-	//Only a one-line helper method - DEPRECATED
-// 	public void addCartItem(Item item, Integer quantity) { 
-// 		Cart.put(item, quantity);
-// 	}
+	public void generateCoupons()   {
+		Membership [] couponList = new Membership[MemList.size()];
+		for(int i = 0; i<couponList.length; i++)   {
+			couponList[i] = MemList.get(i);
+		}
+		System.out.println("Coupon List generated.");
+	}
+
 		
 	public void addProduce(String description, double price, boolean byPound) {
 		Produce p = new Produce(description, price, byPound); 
@@ -119,8 +123,6 @@ public class GroceryStore {
 	public Item chooseItem(GroceryStore store, Scanner sc) { 
 		while (true) {
 			store.printCatalogItems();
-			//sc.nextLine(); 
-			//may no longer need this dummy because we arent using nextInt().
 			String userInput = sc.nextLine();
 			for (Item i : StoreCatalog) {
 				if (i.getItemDescription().equalsIgnoreCase(userInput)) {
@@ -142,7 +144,6 @@ public class GroceryStore {
 		String quantityString = sc.nextLine();
 		Integer quantity = Integer.parseInt(quantityString);
 		Cart.put(i, quantity);
-		//myStore.addCartItem(i, quantity); DEPRECATED
 	}
 
 	public void goShopping(GroceryStore myStore, Scanner sc) {
@@ -161,7 +162,6 @@ public class GroceryStore {
 	}
 	
 	
-	
 	public void printCartReceipt(Scanner sc) {
 		double totalPrice = 0;
 		for (Item i : Cart.keySet()) { 
@@ -171,38 +171,19 @@ public class GroceryStore {
 			System.out.println("Line Price: $" + linePrice);
 			totalPrice = totalPrice + linePrice;
 		}
-		//member discount
 		double discount = 1.00;
 		System.out.println("Are you a member? (Yes/No)");
 		String input = sc.nextLine();
 		if (input.equalsIgnoreCase("YES")) {
-			System.out.println("What is your ID?");
-			String input2 = sc.nextLine();
-			int id = Integer.parseInt(input2);
-			boolean idExists = false;
-				for(Membership i : MemList)   {
-					if(i.getID() == id)   {
-						idExists = true;
-					}
-				}
-				if (idExists) {
-					discount = .90;
-				}
-				else {
-					System.out.println("No valid ID");
-				}
+			System.out.println("Discount Applied.");
+			discount = 0.9;
 		}
 		System.out.println("Total Price: $" + discount*totalPrice);
 	}
-	
-
-
 
 	public void exit() {
 		System.out.println("Thank you for visiting the MIS Farmers Market!");
 		System.exit(0);
 	}
-
-
 	
 }
