@@ -1,6 +1,4 @@
-
 package InventorySys;
-
 public class Produce extends Item {
 	
 	

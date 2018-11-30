@@ -1,8 +1,9 @@
+package InventorySys;
 import java.util.*;
 public class Membership {
 	private int memID;
 	private String memName;
-	private static int memCount = 0;
+	private static int memCount = 1;
 	
 	
 	public Membership()   {
@@ -14,6 +15,7 @@ public class Membership {
 	public Membership(String name)   {
 		memID = memCount;
 		memName = name;
+		memCount++;
 	}
 	
 	
@@ -34,7 +36,9 @@ public class Membership {
 	}
 	
 	
+	
 	public void print()   {
+		System.out.println("--------------------");
 		System.out.println("Name: " + memName);
 		System.out.println("ID Number: " + memID);
 	}

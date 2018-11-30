@@ -1,5 +1,4 @@
 package InventorySys;
-
 public class Meat extends Item{
 	
 	String animal;

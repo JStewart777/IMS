@@ -1,5 +1,4 @@
 package InventorySys;
-
 import java.util.*;
 public class Main {
 
@@ -13,6 +12,7 @@ public class Main {
 		myStore.addMeat("Burgers", 5, false, "Cow");
 		myStore.addProduce("Spinach", 3.00, false);
 		myStore.addProduce("Romaine", 0.01, false);
+		
 		
 		System.out.println("Welcome to the MIS Farmers Market!");
 		

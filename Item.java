@@ -1,5 +1,4 @@
 package InventorySys;
-
 public abstract class Item {
 
 	int itemId;
